@@ -1,11 +1,15 @@
 package com.exerciseTracker.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Notification {
-
+    @JsonProperty("notification_type")
     private String notificationType;
+    @JsonProperty("message")
     private String message;
+    @JsonProperty("user")
     private String User;
 
     public String getNotificationType() {
