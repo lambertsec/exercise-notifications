@@ -11,14 +11,26 @@ import java.util.List;
 @Repository
 public class NotificationRepository {
 
-    @Autowired
-    private static JdbcTemplate jdbcTemplate;
+    private static final String QUERY = """
+            Select N.USER_NAME as USER_NAME,
+            N.MESSAGE as MESSAGE,
+            NT.NOTIFICATION_TYPE as NOTIFICATION_TYPE
+            FROM PUBLIC.NOTIFICATION N
+            LEFT JOIN PUBLIC.NOTIFICATION_TYPE NT on NT.NOTIFICATION_ID = N.NOTIFICATION_ID
+            where  N.USER_NAME = ?
+            """;
+
+   private static JdbcTemplate jdbcTemplate;
 
     public static List<Notification> getPendingNotifications(String user) {
 
-        return jdbcTemplate.query("Select * FROM dbo.NOTIFICATIONS where USER = ?",new Object[]{user}, new NotificationsMapper());
+        return jdbcTemplate.query(QUERY, new NotificationsMapper(), user);
     }
 
+    @Autowired
+    public void notificationRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
 
 

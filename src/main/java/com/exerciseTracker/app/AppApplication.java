@@ -11,16 +11,12 @@ import javax.sql.DataSource;
 @SpringBootApplication
 public class AppApplication {
 
-	@Autowired
-	DataSource dataSource;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
 	}
 
-	@Bean
-	JdbcTemplate jdbcTemplate() {
-		return new JdbcTemplate(dataSource);
-	}
+
 
 }

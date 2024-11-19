@@ -1,0 +1,21 @@
+GET request: http://127.0.0.1:8080/notification/user
+
+response:
+
+[
+    {
+        "user": "user",
+        "notification_type": "activity",
+        "message": "activity reminder"
+    },
+    {
+        "user": "user",
+        "notification_type": "goal",
+        "message": "you reached a goal!"
+    },
+    {
+        "user": "user",
+        "notification_type": "social",
+        "message": "check social media"
+    }
+]
